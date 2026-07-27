@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  CÓMO PERSONALIZAR ESTA PÁGINA
+  ============================================================
+  Busca y reemplaza estos textos (Ctrl+F / Cmd+F) por tus datos reales:
+
+  [NOMBRE_NEGOCIO]   -> el nombre de tu negocio
+  [TU_ESLOGAN]       -> una frase corta que describa lo que haces
+  [NUMERO_WHATSAPP]  -> tu número con código de país, SIN + ni espacios (ej: 18095551234)
+  [NUMERO_SMS]       -> tu número con código de país, CON + (ej: +18095551234)
+  [TU_EMAIL]         -> tu correo (ej: negocio@gmail.com)
+  [INSTAGRAM]        -> tu usuario de Instagram (ej: @minegocio)
+  [DIRECCION]        -> tu dirección o "Solo a domicilio / Solo con cita"
+  [HORARIO_...]      -> tus horas reales
+  Los servicios y precios de ejemplo están en la sección "SERVICIOS".
+  Edita el texto y los precios directamente ahí.
+
+  Para poner tu propio logo/fotos: reemplaza las URLs de las imágenes
+  (busca "unsplash.com") por fotos tuyas subidas a la misma carpeta,
+  por ejemplo <img src="foto1.jpg">.
+  ============================================================
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>[NOMBRE_NEGOCIO]</title>
+<meta name="description" content="[TU_ESLOGAN] — Reserva por WhatsApp, SMS o correo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fdfaf7;
+    --ink: #201a17;
+    --muted: #6f6560;
+    --accent: #c98a97;
+    --accent-dark: #a8687a;
+    --line: #e8ddd6;
+    --card: #ffffff;
+    --radius: 14px;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  h1, h2, h3{ font-family:'Playfair Display', serif; margin: 0 0 .4em; }
+  a{ color: inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width: 1080px; margin:0 auto; padding: 0 20px; }
+
+  /* Header */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(253,250,247,.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 14px 20px; max-width:1080px; margin:0 auto;
+  }
+  .brand{ font-family:'Playfair Display', serif; font-weight:700; font-size:1.3rem; letter-spacing:.3px; }
+  .nav-links{ display:flex; gap: 22px; list-style:none; margin:0; padding:0; font-size:.92rem; }
+  .nav-links a{ text-decoration:none; }
+  .nav-cta{
+    background: var(--accent); color:#fff; padding: 9px 18px; border-radius: 999px;
+    text-decoration:none; font-size:.88rem; font-weight:500; white-space:nowrap;
+  }
+  .nav-cta:hover{ background: var(--accent-dark); }
+  .menu-toggle{ display:none; }
+
+  /* Hero */
+  .hero{
+    display:grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items:center;
+    padding: 60px 20px 70px; max-width: 1080px; margin: 0 auto;
+  }
+  .hero h1{ font-size: 2.6rem; line-height:1.15; }
+  .hero p{ color: var(--muted); font-size: 1.05rem; max-width: 46ch; }
+  .hero-actions{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 22px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 13px 24px; border-radius: 999px; text-decoration:none;
+    font-weight:500; font-size:.95rem; border: 1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{ background: var(--accent); color:#fff; }
+  .btn-primary:hover{ background: var(--accent-dark); }
+  .btn-outline{ border-color: var(--ink); color: var(--ink); }
+  .btn-outline:hover{ background: var(--ink); color:#fff; }
+  .hero-img{
+    border-radius: var(--radius); overflow:hidden; aspect-ratio: 4/5;
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,.25);
+  }
+
+  section{ padding: 70px 0; }
+  .section-title{ text-align:center; margin-bottom: 44px; }
+  .section-title p{ color: var(--muted); max-width: 50ch; margin: 8px auto 0; }
+  .eyebrow{
+    text-transform: uppercase; letter-spacing:2px; font-size:.72rem;
+    color: var(--accent-dark); font-weight:600; display:block; margin-bottom:8px;
+  }
+
+  /* Services */
+  #servicios{ background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .services-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 20px; }
+  .service-card{
+    background: var(--card); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 26px; display:flex; flex-direction:column; gap: 6px;
+  }
+  .service-top{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .service-top h3{ font-size:1.1rem; }
+  .price{ font-weight:600; color: var(--accent-dark); white-space:nowrap; font-family:'Poppins',sans-serif; }
+  .service-card p{ color: var(--muted); font-size:.92rem; margin: 4px 0 14px; }
+  .service-card .btn{ align-self:flex-start; padding: 9px 18px; font-size:.85rem; }
+
+  /* How to book */
+  .steps{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 24px; text-align:center; }
+  .step-num{
+    width:40px; height:40px; border-radius:50%; background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center; margin: 0 auto 14px; font-weight:600;
+  }
+  .step p{ color: var(--muted); font-size:.92rem; }
+
+  /* Contact */
+  #contacto{ background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .contact-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 18px; }
+  .contact-card{
+    border:1px solid var(--line); border-radius: var(--radius); padding: 26px;
+    text-align:center; background: var(--card);
+  }
+  .contact-card .icon{ font-size:1.8rem; margin-bottom:10px; }
+  .contact-card h3{ font-size:1.05rem; margin-bottom:6px; }
+  .contact-card p{ color:var(--muted); font-size:.88rem; margin-bottom:16px; }
+
+  /* Info: hours + location */
+  .info-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .info-card h3{ font-size:1.15rem; margin-bottom:14px; }
+  .hours-row{ display:flex; justify-content:space-between; padding: 8px 0; border-bottom:1px dashed var(--line); font-size:.92rem; }
+  .hours-row span:first-child{ color: var(--muted); }
+
+  footer{
+    background: var(--ink); color: #f3ece8; padding: 40px 0 26px; text-align:center; font-size:.85rem;
+  }
+  footer .brand{ color:#fff; margin-bottom: 10px; }
+  .footer-links{ display:flex; justify-content:center; gap: 18px; margin: 16px 0; flex-wrap:wrap; }
+  .footer-links a{ text-decoration:none; color:#f3ece8; opacity:.85; }
+  .footer-links a:hover{ opacity:1; }
+  .footer-note{ opacity:.55; margin-top: 10px; }
+
+  @media (max-width: 820px){
+    .hero{ grid-template-columns: 1fr; padding-top: 30px; }
+    .hero-img{ order:-1; aspect-ratio: 16/10; }
+    .info-grid{ grid-template-columns: 1fr; }
+    .nav-links{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">[NOMBRE_NEGOCIO]</div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#como-reservar">Cómo reservar</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#horario">Horario</a></li>
+    </ul>
+    <a class="nav-cta" href="#contacto">Reservar cita</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="eyebrow">Cejas &amp; Pestañas</span>
+    <h1>[NOMBRE_NEGOCIO]</h1>
+    <p>[TU_ESLOGAN] — resultados naturales, atención personalizada y productos de calidad. Reserva tu cita hoy mismo.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#servicios">Ver servicios y precios</a>
+      <a class="btn btn-outline" href="#contacto">Reservar por WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=800&auto=format&fit=crop" alt="Foto del negocio - reemplaza esta imagen con una foto real">
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="eyebrow">Menú de servicios</span>
+      <h2>Servicios y precios</h2>
+      <p>Precios de ejemplo — edita cada tarjeta con tus servicios reales.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-top"><h3>Laminado de cejas</h3><span class="price">$40</span></div>
+        <p>Cejas definidas y con volumen por 6-8 semanas. Incluye diseño y tinte.</p>
+        <a class="btn btn-primary" href="#contacto">Reservar</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top"><h3>Diseño y tinte de cejas</h3><span class="price">$20</span></div>
+        <p>Perfilado con pinza/hilo y tinte a tu tono natural.</p>
+        <a class="btn btn-primary" href="#contacto">Reservar</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top"><h3>Lifting de pestañas</h3><span class="price">$45</span></div>
+        <p>Curvatura natural con efecto rizado por semanas, sin extensiones.</p>
+        <a class="btn btn-primary" href="#contacto">Reservar</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top"><h3>Extensiones de pestañas</h3><span class="price">Desde $60</span></div>
+        <p>Clásicas, híbridas o volumen ruso — elige tu estilo favorito.</p>
+        <a class="btn btn-primary" href="#contacto">Reservar</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top"><h3>Microblading</h3><span class="price">$150</span></div>
+        <p>Técnica semipermanente para cejas con apariencia de vello natural.</p>
+        <a class="btn btn-primary" href="#contacto">Reservar</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top"><h3>Retoque</h3><span class="price">$15</span></div>
+        <p>Mantenimiento entre servicios para conservar el resultado.</p>
+        <a class="btn btn-primary" href="#contacto">Reservar</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="como-reservar">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="eyebrow">Fácil y rápido</span>
+      <h2>Cómo reservar tu cita</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Elige tu servicio</h3>
+        <p>Revisa el menú de servicios y precios arriba.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Escríbenos</h3>
+        <p>Por WhatsApp, SMS o correo con el servicio y el día/hora que prefieras.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Confirmamos</h3>
+        <p>Te confirmamos la cita y el método de pago (Zelle o efectivo).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="eyebrow">Reserva tu cita</span>
+      <h2>Contáctanos</h2>
+      <p>Aceptamos pagos por Zelle o efectivo. Escríbenos por el medio que prefieras.</p>
+    </div>
+    <div class="contact-grid">
+
+      <div class="contact-card">
+        <div class="icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Respuesta más rápida</p>
+        <a class="btn btn-primary" target="_blank" rel="noopener"
+           href="https://wa.me/[NUMERO_WHATSAPP]?text=Hola%2C%20quiero%20reservar%20una%20cita%20para%20(servicio)%20el%20d%C3%ADa%20(fecha)%20a%20las%20(hora).">
+          Escribir por WhatsApp
+        </a>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon">✉️</div>
+        <h3>Correo</h3>
+        <p>[TU_EMAIL]</p>
+        <a class="btn btn-primary"
+           href="mailto:[TU_EMAIL]?subject=Reserva%20de%20cita&body=Hola%2C%20quiero%20reservar%20una%20cita%20para%3A%0AServicio%3A%20%0AD%C3%ADa%20y%20hora%20preferidos%3A%20%0ANombre%3A%20">
+          Enviar correo
+        </a>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon">📱</div>
+        <h3>SMS</h3>
+        <p>Para quien prefiere mensaje de texto</p>
+        <a class="btn btn-primary"
+           href="sms:[NUMERO_SMS]?body=Hola%2C%20quiero%20reservar%20una%20cita%20para%20(servicio)%20el%20d%C3%ADa%20(fecha)%20a%20las%20(hora).">
+          Enviar SMS
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="horario">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="eyebrow">Cuándo visitarnos</span>
+      <h2>Horario y ubicación</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Horario de atención</h3>
+        <div class="hours-row"><span>Lunes</span><span>Cerrado</span></div>
+        <div class="hours-row"><span>Martes - Viernes</span><span>10:00 am - 6:00 pm</span></div>
+        <div class="hours-row"><span>Sábado</span><span>9:00 am - 4:00 pm</span></div>
+        <div class="hours-row"><span>Domingo</span><span>Cerrado</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Ubicación</h3>
+        <p style="color:var(--muted)">[DIRECCION]</p>
+        <p style="color:var(--muted)">Pagos aceptados: Zelle y efectivo.</p>
+        <p style="color:var(--muted)">Se requiere confirmar la cita con al menos 24 horas de anticipación. Cancelaciones tardías pueden estar sujetas a un cargo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">[NOMBRE_NEGOCIO]</div>
+    <div class="footer-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Reservar</a>
+      <a href="https://instagram.com/[INSTAGRAM]" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="footer-note">© <span id="year"></span> [NOMBRE_NEGOCIO]. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
