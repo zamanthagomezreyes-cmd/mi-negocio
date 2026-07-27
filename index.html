@@ -126,6 +126,22 @@
   }
   .step p{ color: var(--muted); font-size:.92rem; }
 
+  /* Booking form */
+  .booking-form{
+    max-width: 640px; margin: 0 auto 40px; background: var(--card);
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 28px;
+    display:flex; flex-direction:column; gap: 16px;
+  }
+  .form-row{ display:flex; flex-direction:column; gap:6px; }
+  .form-row-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-row-2 > div{ display:flex; flex-direction:column; gap:6px; }
+  .booking-form label{ font-size:.85rem; font-weight:500; color: var(--muted); }
+  .booking-form input{
+    font-family:'Poppins',sans-serif; font-size:.95rem; padding: 11px 14px;
+    border:1px solid var(--line); border-radius: 8px; background:#fdfaf7; color: var(--ink);
+  }
+  .booking-form input:focus{ outline: 2px solid var(--accent); outline-offset: 1px; }
+
   /* Contact */
   #contacto{ background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .contact-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 18px; }
@@ -157,6 +173,7 @@
     .hero-img{ order:-1; aspect-ratio: 16/10; }
     .info-grid{ grid-template-columns: 1fr; }
     .nav-links{ display:none; }
+    .form-row-2{ grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -202,37 +219,37 @@
       <div class="service-card">
         <div class="service-top"><h3>Laminado de cejas</h3><span class="price">$40</span></div>
         <p>Cejas definidas y con volumen por 6-8 semanas. Incluye diseño y tinte.</p>
-        <a class="btn btn-primary" href="#contacto">Reservar</a>
+        <button type="button" class="btn btn-primary" onclick="seleccionarServicio(this)">Reservar</button>
       </div>
 
       <div class="service-card">
         <div class="service-top"><h3>Diseño y tinte de cejas</h3><span class="price">$20</span></div>
         <p>Perfilado con pinza/hilo y tinte a tu tono natural.</p>
-        <a class="btn btn-primary" href="#contacto">Reservar</a>
+        <button type="button" class="btn btn-primary" onclick="seleccionarServicio(this)">Reservar</button>
       </div>
 
       <div class="service-card">
         <div class="service-top"><h3>Lifting de pestañas</h3><span class="price">$45</span></div>
         <p>Curvatura natural con efecto rizado por semanas, sin extensiones.</p>
-        <a class="btn btn-primary" href="#contacto">Reservar</a>
+        <button type="button" class="btn btn-primary" onclick="seleccionarServicio(this)">Reservar</button>
       </div>
 
       <div class="service-card">
         <div class="service-top"><h3>Extensiones de pestañas</h3><span class="price">Desde $60</span></div>
         <p>Clásicas, híbridas o volumen ruso — elige tu estilo favorito.</p>
-        <a class="btn btn-primary" href="#contacto">Reservar</a>
+        <button type="button" class="btn btn-primary" onclick="seleccionarServicio(this)">Reservar</button>
       </div>
 
       <div class="service-card">
         <div class="service-top"><h3>Microblading</h3><span class="price">$150</span></div>
         <p>Técnica semipermanente para cejas con apariencia de vello natural.</p>
-        <a class="btn btn-primary" href="#contacto">Reservar</a>
+        <button type="button" class="btn btn-primary" onclick="seleccionarServicio(this)">Reservar</button>
       </div>
 
       <div class="service-card">
         <div class="service-top"><h3>Retoque</h3><span class="price">$15</span></div>
         <p>Mantenimiento entre servicios para conservar el resultado.</p>
-        <a class="btn btn-primary" href="#contacto">Reservar</a>
+        <button type="button" class="btn btn-primary" onclick="seleccionarServicio(this)">Reservar</button>
       </div>
 
     </div>
@@ -270,38 +287,51 @@
     <div class="section-title">
       <span class="eyebrow">Reserva tu cita</span>
       <h2>Contáctanos</h2>
-      <p>Aceptamos pagos por Zelle o efectivo. Escríbenos por el medio que prefieras.</p>
+      <p>Aceptamos pagos por Zelle o efectivo. Completa los datos y elige por dónde enviarlos.</p>
     </div>
+
+    <div class="booking-form">
+      <div class="form-row">
+        <label for="servicioInput">Servicio</label>
+        <input type="text" id="servicioInput" placeholder="Selecciona un servicio arriba, o escríbelo aquí">
+      </div>
+      <div class="form-row form-row-2">
+        <div>
+          <label for="fechaCita">Fecha</label>
+          <input type="date" id="fechaCita">
+        </div>
+        <div>
+          <label for="horaCita">Hora</label>
+          <input type="time" id="horaCita">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="nombreCliente">Tu nombre</label>
+        <input type="text" id="nombreCliente" placeholder="Nombre y apellido">
+      </div>
+    </div>
+
     <div class="contact-grid">
 
       <div class="contact-card">
         <div class="icon">💬</div>
         <h3>WhatsApp</h3>
         <p>Respuesta más rápida</p>
-        <a class="btn btn-primary" target="_blank" rel="noopener"
-           href="https://wa.me/14327551623?text=Hola%2C%20quiero%20reservar%20una%20cita%20para%20(servicio)%20el%20d%C3%ADa%20(fecha)%20a%20las%20(hora).">
-          Escribir por WhatsApp
-        </a>
+        <button type="button" class="btn btn-primary" onclick="reservarPor('whatsapp')">Escribir por WhatsApp</button>
       </div>
 
       <div class="contact-card">
         <div class="icon">✉️</div>
         <h3>Correo</h3>
         <p>[TU_EMAIL]</p>
-        <a class="btn btn-primary"
-           href="mailto:[TU_EMAIL]?subject=Reserva%20de%20cita&body=Hola%2C%20quiero%20reservar%20una%20cita%20para%3A%0AServicio%3A%20%0AD%C3%ADa%20y%20hora%20preferidos%3A%20%0ANombre%3A%20">
-          Enviar correo
-        </a>
+        <button type="button" class="btn btn-primary" onclick="reservarPor('email')">Enviar correo</button>
       </div>
 
       <div class="contact-card">
         <div class="icon">📱</div>
         <h3>SMS</h3>
         <p>Para quien prefiere mensaje de texto</p>
-        <a class="btn btn-primary"
-           href="sms:+14327551623?body=Hola%2C%20quiero%20reservar%20una%20cita%20para%20(servicio)%20el%20d%C3%ADa%20(fecha)%20a%20las%20(hora).">
-          Enviar SMS
-        </a>
+        <button type="button" class="btn btn-primary" onclick="reservarPor('sms')">Enviar SMS</button>
       </div>
 
     </div>
@@ -346,6 +376,67 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ============================================================
+  // RESERVAS: al hacer clic en "Reservar" en una tarjeta de servicio,
+  // se copia el nombre y precio de ESA tarjeta al formulario de contacto.
+  // No hace falta editar nada aquí si cambias los servicios arriba:
+  // esta función lee el texto directamente de la tarjeta.
+  // ============================================================
+  function seleccionarServicio(btn){
+    const card = btn.closest('.service-card');
+    const nombre = card.querySelector('h3').textContent.trim();
+    const precio = card.querySelector('.price').textContent.trim();
+    document.getElementById('servicioInput').value = nombre + ' (' + precio + ')';
+    document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('fechaCita').focus({ preventScroll: true });
+  }
+
+  // No permitir seleccionar fechas pasadas
+  document.getElementById('fechaCita').min = new Date().toISOString().split('T')[0];
+
+  function construirMensaje(){
+    const servicio = document.getElementById('servicioInput').value.trim();
+    const fecha = document.getElementById('fechaCita').value;
+    const hora = document.getElementById('horaCita').value;
+    const nombre = document.getElementById('nombreCliente').value.trim();
+
+    let fechaTexto = '(por confirmar)';
+    if (fecha) {
+      const [y, m, d] = fecha.split('-').map(Number);
+      const f = new Date(y, m - 1, d);
+      fechaTexto = f.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    const horaTexto = hora || '(por confirmar)';
+
+    let msg = 'Hola, quiero reservar una cita';
+    if (servicio) msg += ' para: ' + servicio;
+    msg += '.\nFecha: ' + fechaTexto;
+    msg += '\nHora: ' + horaTexto;
+    if (nombre) msg += '\nNombre: ' + nombre;
+    return msg;
+  }
+
+  function reservarPor(medio){
+    const servicio = document.getElementById('servicioInput').value.trim();
+    if (!servicio) {
+      alert('Por favor selecciona un servicio arriba (o escríbelo en el campo "Servicio") antes de enviar tu reserva.');
+      document.getElementById('servicioInput').focus();
+      return;
+    }
+    const mensaje = construirMensaje();
+    const codificado = encodeURIComponent(mensaje);
+
+    if (medio === 'whatsapp') {
+      window.open('https://wa.me/14327551623?text=' + codificado, '_blank');
+    } else if (medio === 'sms') {
+      const esIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const separador = esIOS ? '&' : '?';
+      window.location.href = 'sms:+14327551623' + separador + 'body=' + codificado;
+    } else if (medio === 'email') {
+      window.location.href = 'mailto:[TU_EMAIL]?subject=' + encodeURIComponent('Reserva de cita') + '&body=' + codificado;
+    }
+  }
 </script>
 </body>
 </html>
