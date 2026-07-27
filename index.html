@@ -374,6 +374,19 @@
   </div>
 </footer>
 
+<!-- Envío del registro de reservas a Google Sheets. Método de formulario+iframe
+     oculto en vez de fetch(): es más confiable, funciona aunque abras el
+     archivo directo desde tu computadora, y no lo bloquean los bloqueadores
+     de anuncios/privacidad tan fácil como a las llamadas fetch(). -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+<form id="formGoogleSheets" action="https://docs.google.com/forms/d/e/1FAIpQLSfFkexdvma-eZrIWj1iZZziI7MwqHyTm8bpIGgEmvk_hdRoJg/formResponse" method="POST" target="hidden_iframe" style="display:none;">
+  <input type="text" name="entry.130916488" id="fg_servicio">
+  <input type="text" name="entry.1127427015" id="fg_fecha">
+  <input type="text" name="entry.1410592998" id="fg_hora">
+  <input type="text" name="entry.1750303815" id="fg_nombre">
+  <input type="text" name="entry.1745054896" id="fg_estado" value="Pendiente">
+</form>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -420,44 +433,21 @@
   // ============================================================
   // REGISTRO DE RESERVAS (opcional, 100% gratis):
   // Cada vez que alguien reserva, además de abrir WhatsApp/SMS/correo,
-  // esta función guarda el dato en un Google Sheet tuyo (gratis, sin límite).
-  // Para activarlo:
-  //   1. Crea un Google Form con 4 preguntas de texto corto en este orden:
-  //      Servicio, Fecha, Hora, Nombre.
-  //   2. En el Form, menú ⋮ (arriba a la derecha) → "Obtener enlace para
-  //      completar previamente" ("Get pre-filled link").
-  //   3. Llena cada campo con una palabra distinta (ej: "AAA", "BBB", "CCC",
-  //      "DDD") y dale "Obtener enlace".
-  //   4. Copia el enlace generado y pégamelo (o pégalo aquí abajo tú misma):
-  //      vas a ver algo como
-  //      https://docs.google.com/forms/d/e/ABC123.../viewform?usp=pp_url&entry.111=AAA&entry.222=BBB&entry.333=CCC&entry.444=DDD
-  //   5. Reemplaza GOOGLE_FORM_URL abajo por la parte que termina en
-  //      "/formResponse" (cambia "viewform" por "formResponse" en esa URL).
-  //   6. Reemplaza cada entry.XXX por el número que corresponda a cada campo
-  //      (AAA=Servicio, BBB=Fecha, CCC=Hora, DDD=Nombre en el ejemplo).
-  //   7. En el Form, pestaña "Respuestas" → ícono de Sheets, para crear
-  //      la hoja de cálculo donde se guardará todo automáticamente.
-  // Si dejas GOOGLE_FORM_URL como está (sin configurar), la página sigue
-  // funcionando normal, simplemente no guarda el registro.
+  // esta función guarda el dato en tu Google Sheet, usando el formulario
+  // oculto ("formGoogleSheets") que está justo antes de este <script>.
+  // Ya está conectado a tu Google Form. Si algún día cambias de formulario,
+  // solo actualiza el "action" del formulario oculto y los "name" de sus
+  // campos (entry.XXXXXXX) por los nuevos.
   // ============================================================
-  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfFkexdvma-eZrIWj1iZZziI7MwqHyTm8bpIGgEmvk_hdRoJg/formResponse';
-  const CAMPOS_FORM = {
-    servicio: 'entry.130916488',
-    fecha:    'entry.1127427015',
-    hora:     'entry.1410592998',
-    nombre:   'entry.1750303815',
-    estado:   'entry.1745054896'
-  };
-
   function registrarReserva(servicio, fecha, hora, nombre){
-    if (!GOOGLE_FORM_URL.startsWith('http')) return; // no configurado todavía
-    const datos = new FormData();
-    datos.append(CAMPOS_FORM.servicio, servicio);
-    datos.append(CAMPOS_FORM.fecha, fecha);
-    datos.append(CAMPOS_FORM.hora, hora);
-    datos.append(CAMPOS_FORM.nombre, nombre);
-    datos.append(CAMPOS_FORM.estado, 'Pendiente'); // tú lo cambias luego a Confirmada/Cancelada directo en la hoja
-    fetch(GOOGLE_FORM_URL, { method: 'POST', mode: 'no-cors', body: datos }).catch(function(){});
+    const form = document.getElementById('formGoogleSheets');
+    if (!form) return;
+    document.getElementById('fg_servicio').value = servicio;
+    document.getElementById('fg_fecha').value = fecha;
+    document.getElementById('fg_hora').value = hora;
+    document.getElementById('fg_nombre').value = nombre;
+    document.getElementById('fg_estado').value = 'Pendiente';
+    form.submit();
   }
 
   function reservarPor(medio){
